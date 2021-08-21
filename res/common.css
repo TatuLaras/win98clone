@@ -1,0 +1,33 @@
+/* Variables */
+
+@font-face {
+    font-family: oldSansSerif;
+    src: url(VCR_OSD_MONO_1.001.ttf);
+}
+
+:root {
+    --window-border-color: #696969;
+    --general-background-color: #c0c0c0;
+    --desktop-background-color: #008080;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: oldSansSerif, sans-serif;
+    user-select: none;
+}
+
+button,
+input {
+    font-family: oldSansSerif, sans-serif;
+    border: 2px outset;
+}
+
+button {
+    background-color: var(--general-background-color);
+}
+
+button:active {
+    border-style: inset;
+}

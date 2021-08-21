@@ -1,0 +1,39 @@
+/* width */
+::-webkit-scrollbar {
+    width: 18px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: #dadadb;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border: 2px outset;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b9b9b9;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #aaaaaa;
+}
+
+::-webkit-scrollbar-button {
+    background-color: #c0c0c0;
+    background-image: url('img/up.png');
+    background-size: cover;
+    border: 2px outset;
+}
+
+::-webkit-scrollbar-button:increment {
+    background-image: url('img/down.png');
+}
+
+::-webkit-scrollbar-button:active {
+    border-style: inset;
+}

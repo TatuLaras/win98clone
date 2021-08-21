@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tatu Laras</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="res/style.css">
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div id="wrapper">
+        <div id="desktop" onclick="unfocus(event)">
+            <div id="selector-rect" class="hidden"></div>
+            <div class="desktop-icon" data-destination="browserWindow" onclick="selectIcon(event.target)" ondblclick="launchIcon(event)"
+                style="top: 10px; left: 10px;">
+                <img src="res/img/internet.png" draggable="false">
+                <p>Internet-selain</p>
+            </div>
+            <div class="desktop-icon" data-destination="minesweeperWindow" onclick="selectIcon(event.target)" ondblclick="launchIcon(event)"
+                style="top: 100px; left: 10px;">
+                <img src="res/img/minesweeper.png" draggable="false">
+                <p>Miina-harava</p>
+            </div>
+            <div class="desktop-icon" data-destination="paintWindow" onclick="selectIcon(event.target)" ondblclick="launchIcon(event)"
+                style="top: 200px; left: 10px;">
+                <img src="res/img/paint.png" draggable="false">
+                <p>Paint</p>
+            </div>
+            <div class="window window-generic hidden"style="top: 100px; left: 120px; width: 1000px; height: 700px;" 
+            id="browserWindow" onmousedown="setSizeLimit(event);">
+                <div class="program-header">
+                    <img class="mini-icon" src="res/img/internet.png" draggable="false">
+                    <div class="title">Internet-selain</div>
+                    <div class="control-buttons">
+                        <img class="control-button min"   src="res/img/min.png" draggable="false" onclick="minimizeWindow(event)"></img>
+                        <img class="control-button max"   src="res/img/max.png" draggable="false" onclick="toggleMaximizeWindow(event)"></img>
+                        <img class="control-button close" src="res/img/close.png" draggable="false" onclick="closeWindow(event)"></img>
+                    </div>
+                </div>
+                <div class="browser program-body">
+                    <div class="url-bar">
+                        <img src="res/img/forward.png" draggable="false" class="image-button back" onclick="navigateBack(event)">
+                        <img src="res/img/forward.png" draggable="false" class="image-button" onclick="navigateForward(event)">
+                        <img src="res/img/home.png" draggable="false" class="image-button" onclick="navigateToHomePage(event)">
+                        <input value="computer_files/home/index.html">
+                        <button onclick="navigateToUrlInput(event)">Selaa</button>
+                    </div>
+                    <div class="browser-bookmark-bar">
+                        <div class="bookmark" data-url="https://www.twitter.com">
+                            <img src="res/img/internet.png">
+                            <p>Twitter</p>
+                        </div>
+                        <div class="bookmark" data-url="https://www.twitter.com">
+                            <img src="res/img/internet.png">
+                            <p>LinkedIn</p>
+                        </div>
+                    </div>
+                    <iframe src="computer_files/home/index.html" onload="updateNavStack(this.contentWindow.location.href, event);"></iframe>
+                </div>
+            </div>
+            <div class="window window-generic hidden fixed" style="top: 20px; left: 100px; width: 455px; height: 563px;" id="minesweeperWindow">
+                <div class="program-header">
+                    <img class="mini-icon" src="res/img/minesweeper.png" draggable="false">
+                    <div class="title">Miinaharava</div>
+                    <div class="control-buttons">
+                        <img class="control-button min" src="res/img/min.png" draggable="false" onclick="minimizeWindow(event)"></img>
+                        <img class="control-button close" src="res/img/close.png" draggable="false" onclick="closeWindow(event)"></img>
+                    </div>
+                </div>
+                <iframe src="programs/minesweeper/index.html" id="minesweeper-frame" scrolling="no"></iframe>
+            </div>
+            <div class="window window-generic hidden" style="top: 30px; left: 110px; width: 880px; height: 740px;" id="paintWindow"
+             onmousedown="setSizeLimit(event);">
+                <div class="program-header">
+                    <img class="mini-icon" src="res/img/paint.png" draggable="false">
+                    <div class="title">Nimetön - Paint</div>
+                    <div class="control-buttons">
+                        <img class="control-button min" src="res/img/min.png" draggable="false" onclick="minimizeWindow(event)"></img>
+                        <img class="control-button max"   src="res/img/max.png" draggable="false" 
+                        onclick="toggleMaximizeWindow(event)"></img>
+                        <img class="control-button close" src="res/img/close.png" draggable="false" onclick="closeWindow(event)"></img>
+                    </div>
+                </div>
+                <iframe src="programs/paintbrush/index.html" id="minesweeper-frame" scrolling="no"></iframe>
+            </div>
+        </div>
+        <div id="taskbar">
+            <div id="start-button">
+                <img src="res/img/win.png">
+                <p>Aloita</p>
+            </div>
+            <div class="taskbar-divider"></div>
+            <div class="task hidden" data-destination="browserWindow" onclick="activateTaskBarItem(event)">
+                <img class="mini-icon" src="res/img/internet.png" draggable="false">
+                <p>Internet-selain</p>
+            </div>
+            <div class="task hidden" data-destination="minesweeperWindow" onclick="activateTaskBarItem(event)">
+                <img class="mini-icon" src="res/img/minesweeper.png" draggable="false">
+                <p>Miinaharava</p>
+            </div>
+            <div class="task hidden" data-destination="paintWindow" onclick="activateTaskBarItem(event)">
+                <img class="mini-icon" src="res/img/paint.png" draggable="false">
+                <p>Paint</p>
+            </div>
+        </div>
+    </div>
+        
+        <script src="res/script.js" async defer></script>
+</body>
+
+</html>

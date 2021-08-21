@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Paintbrush</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../../res/common.css" />
+        <link rel="stylesheet" href="../../res/scrollbar.css" />
+
+        <style>
+            body {
+                background-color: var(--general-background-color);
+            }
+
+            nav {
+                width: 100%;
+                height: 22px;
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                border-bottom: 2px outset;
+            }
+
+            nav span {
+                padding: 0 5px;
+            }
+
+            #main {
+                display: flex;
+            }
+
+            #main aside {
+                width: 64px;
+                padding: 10px;
+                height: 600px;
+                display: grid;
+                grid-template-columns: 30px 30px;
+                grid-auto-flow: row; /* a column flow */
+                grid-auto-rows: 30px; /* each column will 100px of width */
+            }
+
+            #paint-window {
+                background-color: white;
+                position: absolute;
+                z-index: 1;
+                left: 70px;
+                padding: 0;
+                margin: 0;
+                border: 0;
+                image-rendering: pixelated;
+            }
+
+            #paint-window-preview {
+                position: absolute;
+                left: 70px;
+                z-index: 2;
+                image-rendering: pixelated;
+            }
+
+            .tool-button {
+                width: 16px;
+                height: 16px;
+                border: outset 2px;
+                background-image: url('img/tools.png');
+                image-rendering: pixelated;
+                background-size: 256px;
+                transform: scale(1.5);
+            }
+
+            .tool-button:active {
+                border-style: inset;
+                position: relative;
+            }
+
+            .tool-button.current {
+                border: inset 2px;
+                box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.884);
+            }
+
+            .tool-button.pen {
+                background-position-x: calc(-16px * 6);
+            }
+
+            .tool-button.line {
+                background-position-x: calc(-16px * 10);
+            }
+
+            .tool-button.bucket {
+                background-position-x: calc(-16px * 3);
+            }
+
+            #color-picker {
+                border: 2px outset;
+                margin: 10px;
+                width: 400px;
+                height: 56px;
+                display: grid;
+                grid-template-rows: 26px 26px;
+                grid-auto-flow: column; /* a column flow */
+                grid-auto-columns: 26px; /* each column will 100px of width */
+            }
+
+            #color-picker .color {
+                width: 22px;
+                height: 22px;
+                border: 2px inset;
+                margin: 2px;
+                box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.884);
+            }
+
+            .color.black {
+                background-color: black;
+            }
+
+            .color.white {
+                background-color: white;
+            }
+
+            .color.lighter-gray {
+                background-color: #bcbcbc;
+            }
+
+            .color.light-gray {
+                background-color: #797979;
+            }
+
+            .color.dark-red {
+                background-color: #7d0102;
+            }
+
+            .color.red {
+                background-color: #fc0200;
+            }
+
+            .color.dark-yellow {
+                background-color: #797c00;
+            }
+
+            .color.yellow {
+                background-color: #fffc03;
+            }
+
+            .color.dark-green {
+                background-color: #007c00;
+            }
+
+            .color.green {
+                background-color: #04fd02;
+            }
+
+            .color.dark-cyan {
+                background-color: #027b76;
+            }
+
+            .color.cyan {
+                background-color: #05fbff;
+            }
+
+            .color.dark-blue {
+                background-color: #020180;
+            }
+
+            .color.blue {
+                background-color: #0401fb;
+            }
+
+            .color.dark-pink {
+                background-color: #78007c;
+            }
+
+            .color.pink {
+                background-color: #fd00f8;
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">
+                You are using an <strong>outdated</strong> browser. Please
+                <a href="#">upgrade your browser</a> to improve your experience.
+            </p>
+        <![endif]-->
+        <nav>
+            <span><u>F</u>ile</span>
+        </nav>
+        <div id="main">
+            <aside>
+                <div
+                    class="tool-button pen current"
+                    onclick="setTool('pen', event)"
+                    draggable="false"
+                ></div>
+                <div
+                    class="tool-button line"
+                    onclick="setTool('line', event)"
+                    draggable="false"
+                ></div>
+                <div
+                    class="tool-button bucket"
+                    onclick="setTool('bucket', event)"
+                    draggable="false"
+                ></div>
+                <div class="tool-button" onclick="setTool('pen', event)" draggable="false"></div>
+                <div class="tool-button" onclick="setTool('pen', event)" draggable="false"></div>
+            </aside>
+            <canvas id="paint-window-preview" width="800" height="600"></canvas>
+            <canvas id="paint-window" width="800" height="600"></canvas>
+        </div>
+        <div id="color-picker">
+            <div class="color black" onclick="setColor(event)"></div>
+            <div class="color white" onclick="setColor(event)"></div>
+            <div class="color light-gray" onclick="setColor(event)"></div>
+            <div class="color lighter-gray" onclick="setColor(event)"></div>
+            <div class="color dark-red" onclick="setColor(event)"></div>
+            <div class="color red" onclick="setColor(event)"></div>
+            <div class="color dark-yellow" onclick="setColor(event)"></div>
+            <div class="color yellow" onclick="setColor(event)"></div>
+            <div class="color dark-green" onclick="setColor(event)"></div>
+            <div class="color green" onclick="setColor(event)"></div>
+            <div class="color dark-cyan" onclick="setColor(event)"></div>
+            <div class="color cyan" onclick="setColor(event)"></div>
+            <div class="color dark-blue" onclick="setColor(event)"></div>
+            <div class="color blue" onclick="setColor(event)"></div>
+            <div class="color dark-pink" onclick="setColor(event)"></div>
+            <div class="color pink" onclick="setColor(event)"></div>
+        </div>
+
+        <script src="script.js" async defer></script>
+    </body>
+</html>

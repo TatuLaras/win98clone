@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title></title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../../res/scrollbar.css" />
+        <style>
+            body {
+                background-image: url('img/lava.png');
+                color: white;
+                font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            }
+
+            a {
+                color: white;
+                font-size: large;
+            }
+
+            a:hover {
+                font-size: x-large;
+            }
+
+            #visitors {
+                width: 200px;
+                float: left;
+                padding-left: 20px;
+            }
+
+            #info img {
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="img/torch_lg_clr.gif" />
+        <img src="img/burning1.gif" />
+        <img src="img/torch_lg_clr.gif" />
+        <br />
+        <div id="info">
+            <img src="img/construction.gif" />
+            <img src="img/ns_logo.gif" />
+            <img src="img/ie_logo.gif" />
+            <img src="img/noframes.gif" />
+            <img src="img/notepad.gif" />
+
+            <div id="visitors">
+                <h3 style="background-color: black; width: fit-content">Kävijät:</h3>
+                <img src="img/visitors.jpg" height="20px" />
+            </div>
+            <img src="img/demon.gif" />
+        </div>
+        <img src="img/firebar.gif" style="width: 100%" />
+        <img src="img/skull.gif" />
+        <img src="img/skull.gif" />
+        <img src="img/skull.gif" />
+        <img src="img/skull.gif" />
+        <br />
+        <h2 style="width: 500px; background-color: #ff0000; padding: 0; margin: 0">
+            Tervetuloa internetin päheimpään nurkkaukseen! Käy tsekkaamassa mun muut sivut:
+        </h2>
+        <ul>
+            <li>
+                <img src="img/hot.gif" />
+                <a href="/computer_files/projects/index.html">Projektit</a>
+            </li>
+            <li>
+                <img src="img/hot.gif" />
+                <a href="#">Somet (scifiä)</a> <img src="img/ufo.gif" height="20px" />
+            </li>
+            <li>
+                <img src="img/hot.gif" />
+                <a href="#">Sivu 3</a>
+            </li>
+        </ul>
+
+        <img src="img/laptop-01.gif" />
+        <img src="img/coding_neo_icon_ii.gif" width="100px" />
+        <img src="img/laptop-01.gif" /><br />
+        <img src="img/firebar.gif" /><img src="img/barbariananim.gif" /><br />
+        <p>
+            <img src="img/emailfire.gif" width="80px" /> Ota yhteyttä: <a>tatu.laras@gmail.com</a>
+        </p>
+
+        <script>
+            window.addEventListener(
+                'load',
+                function () {
+                    var users = document.querySelector('#visitors h3');
+
+                    setInterval(function () {
+                        var today = new Date();
+
+                        if (today.getSeconds() % 2 == 0) {
+                            users.style.color = 'red';
+                        } else {
+                            users.style.color = 'white';
+                        }
+                    }, 1000);
+                },
+                false
+            );
+        </script>
+    </body>
+</html>

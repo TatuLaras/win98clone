@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title></title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            @import url('../../res/common.css');
+
+            body {
+                background-color: var(--general-background-color);
+                border: 5px outset;
+                width: fit-content;
+                padding: 10px;
+                margin: 0;
+            }
+
+            #game {
+                display: grid;
+                grid-template-columns: 16;
+                grid-template-rows: 16;
+                margin: 0;
+                padding: 0;
+                width: calc(26px * 16);
+                border: 5px inset;
+                margin-top: 10px;
+            }
+
+            #game .cell {
+                border: 3px outset;
+                width: 20px;
+                height: 20px;
+                margin: 0;
+                padding: 0;
+                background-color: var(--general-background-color);
+                font-size: 20px;
+                text-align: center;
+            }
+
+            #game .mine {
+                background-image: url('img/bomb.png');
+                background-size: contain;
+            }
+
+            #game .revealed,
+            #game .active {
+                border: 1px solid var(--window-border-color);
+                padding: 2px;
+            }
+
+            #game .flag {
+                background-image: url('img/flag.png');
+                background-size: cover;
+            }
+
+            #info {
+                height: 50px;
+                padding: 10px;
+                background-color: var(--general-background-color);
+                border: 5px inset;
+                width: calc(26px * 16 - 20px);
+                display: flex;
+                justify-content: space-between;
+                align-content: center;
+            }
+
+            #info .component {
+                margin: 0px;
+            }
+
+            #info .digit {
+                background-image: url('img/sprite100.gif');
+                background-size: 360px;
+                height: 58px;
+                width: 35px;
+                float: left;
+            }
+
+            #info .digit.time1 {
+                background-position-x: calc(-32px * 1);
+            }
+
+            #info .digit.time2 {
+                background-position-x: calc(-32px * 2);
+            }
+
+            #info .digit.time3 {
+                background-position-x: calc(-32px * 3);
+            }
+
+            #info .digit.time4 {
+                background-position-x: calc(-32px * 4);
+            }
+
+            #info .digit.time5 {
+                background-position-x: calc(-32px * 4 - 33px);
+            }
+
+            #info .digit.time6 {
+                background-position-x: calc(-32px * 4 - 33px * 2);
+            }
+
+            #info .digit.time7 {
+                background-position-x: calc(-32px * 4 - 33px * 3);
+            }
+
+            #info .digit.time8 {
+                background-position-x: calc(-32px * 4 - 33px * 4);
+            }
+
+            #info .digit.time9 {
+                background-position-x: calc(-32px * 4 - 33px * 5);
+            }
+
+            #smiley {
+                width: 40px;
+                height: 40px;
+                border: 5px outset;
+                background-color: var(--general-background-color);
+                background-image: url('img/sprite100.gif');
+                background-size: 300px;
+                background-position: -8px -123px;
+            }
+
+            #smiley:active {
+                border-style: inset;
+                background-position: -6px -121px !important;
+            }
+
+            .scared {
+                background-position: -117px -123px !important;
+            }
+
+            .dead {
+                background-position: -171px -123px !important;
+            }
+
+            .won {
+                background-position: -225px -123px !important;
+            }
+
+            #flag-counter,
+            #time-counter {
+                transform: scale(0.8);
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">
+                You are using an <strong>outdated</strong> browser. Please
+                <a href="#">upgrade your browser</a> to improve your experience.
+            </p>
+        <![endif]-->
+        <div id="info">
+            <div id="flag-counter" class="component">
+                <div class="digit hundreds"></div>
+                <div class="digit tens"></div>
+                <div class="digit ones"></div>
+            </div>
+            <div id="smiley" class="component" onclick="reset()"></div>
+            <div id="time-counter" class="component">
+                <div class="digit hundreds"></div>
+                <div class="digit tens"></div>
+                <div class="digit ones"></div>
+            </div>
+        </div>
+        <div id="game"></div>
+        <script src="script.js" async defer></script>
+    </body>
+</html>
