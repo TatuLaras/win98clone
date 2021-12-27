@@ -129,7 +129,8 @@ iframe.noevents {
 }
 
 .desktop-icon img {
-    height: 75%;
+    width: 45%;
+    aspect-ratio: 1;
     image-rendering: pixelated;
 }
 
@@ -188,7 +189,7 @@ iframe.noevents {
     justify-content: space-between;
     margin: 5px;
     padding: 5px;
-    width: 80px;
+    width: 85px;
     border: outset 2px;
 }
 
