@@ -4,4 +4,5 @@ I have no intentions of making this a faithful recreation of the original, I onl
 [Live version](https://tatularas.github.io/win98clone/)
 
 ---
-![image](https://github.com/TatuLaras/win98clone/assets/34749827/80d0e9b0-6be8-4710-976b-0ff32cd165c9)
+![image](https://github.com/TatuLaras/win98clone/assets/34749827/41b05f15-8a42-4dc1-a38f-622237d11978)
+
